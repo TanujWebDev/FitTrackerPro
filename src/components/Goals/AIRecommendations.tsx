@@ -7,6 +7,9 @@ const AIRecommendations = ({ goal }) => {
 
   const prompt = `Suggest an AI-based weekly fitness and diet plan for the goal: "${goal.title}" of type "${goal.type}" with a target date of ${goal.targetDate}. Keep it beginner-friendly and practical.`;
 
+  // ✅ API key from .env file
+  const openaiApiKey = import.meta.env.VITE_OPENAI_API_KEY;
+
   useEffect(() => {
     const fetchSuggestion = async () => {
       setLoading(true);
@@ -20,7 +23,7 @@ const AIRecommendations = ({ goal }) => {
           },
           {
             headers: {
-              Authorization: `Bearer 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`,
+              Authorization: `Bearer ${openaiApiKey}`,
               "Content-Type": "application/json",
             },
           }
